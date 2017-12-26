@@ -14,12 +14,12 @@ class TicTacToe
     [2,4,6]
   ]
 
-  def display_board(board)
-    puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  def display_board
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
     puts "-----------"
-    puts " #{board[3]} | #{board[4]} | #{board[5]} "
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
     puts "-----------"
-    puts " #{board[6]} | #{board[7]} | #{board[8]} "
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
   def input_to_index(user_input)
@@ -50,18 +50,12 @@ class TicTacToe
     end
   end
 
-  def turn_count(board)
-    cnt = 0
-    board.each do |pos|
-      if (pos == 'X' || pos == 'O')
-        cnt += 1
-      end
-    end
-    return cnt
+  def turn_count
+  @board.count{|token| token == "X" || token == "O"}
   end
 
-  def current_player(board)
-    turn_count(board).even? ? "X" : "O"
+  def current_player
+    turn_count.even? ? "X" : "O"
   end
 
   def won?(board)
